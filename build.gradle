@@ -1,0 +1,168 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation platform("io.grpc:grpc-bom:1.62.2")
+    implementation platform("com.google.protobuf:protobuf-bom:3.25.3")
+    implementation platform("io.netty:netty-bom:4.1.111.Final")
+    implementation platform("io.micrometer:micrometer-bom:1.13.2")
+    implementation platform('com.google.cloud:libraries-bom:26.43.0')
+    implementation platform("io.projectreactor:reactor-bom:2023.0.8")
+    implementation platform("com.fasterxml.jackson:jackson-bom:2.17.2")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.typesafe:config'
+    implementation 'org.agrona:agrona'
+    implementation "com.google.guava:guava"
+    implementation "org.apache.commons:commons-lang3"
+    implementation "org.apache.commons:commons-math3"
+    implementation "com.esotericsoftware:kryo"
+    implementation "io.github.classgraph:classgraph"
+    implementation 'com.alibaba.fastjson2:fastjson2'
+
+    implementation('io.netty:netty-tcnative-boringssl-static') {
+        artifact {}
+        artifact { classifier = "linux-x86_64" }
+        artifact { classifier = "linux-aarch_64" }
+        artifact { classifier = "osx-x86_64" }
+        artifact { classifier = "osx-aarch_64" }
+        artifact { classifier = "windows-x86_64" }
+    }
+    implementation 'io.netty:netty-codec-dns'
+    implementation 'io.netty:netty-transport'
+    implementation 'io.netty:netty-codec'
+    implementation 'io.netty:netty-common'
+    implementation 'io.netty:netty-transport-classes-epoll'
+    implementation('io.netty:netty-transport-native-epoll') {
+        artifact {}
+        artifact { classifier = "linux-x86_64" }
+    }
+    implementation 'io.netty:netty-handler'
+    implementation 'io.netty:netty-buffer'
+    implementation 'io.netty:netty-resolver-dns'
+    implementation 'io.netty:netty-resolver'
+    implementation 'com.fasterxml.jackson.core:jackson-core'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'com.google.guava:guava'
+    implementation 'org.agrona:agrona'
+    implementation 'org.slf4j:slf4j-api'
+    implementation 'io.netty:netty-codec-http'
+    implementation 'io.netty:netty-buffer'
+    implementation 'io.netty:netty-codec'
+    implementation 'io.netty:netty-transport'
+    implementation 'io.prometheus:simpleclient'
+    implementation 'io.prometheus:simpleclient_common'
+    implementation 'io.prometheus:simpleclient_hotspot'
+    implementation 'com.google.code.gson:gson'
+    implementation 'com.netflix.concurrency-limits:concurrency-limits-core'
+    // rpc
+    def protostuff = "1.8.0"
+    implementation "io.protostuff:protostuff-core:${protostuff}"
+    implementation "io.protostuff:protostuff-runtime:${protostuff}"
+
+    def resilience4j = "2.2.0"
+    implementation "io.github.resilience4j:resilience4j-retry:${resilience4j}"
+    implementation "io.github.resilience4j:resilience4j-core:${resilience4j}"
+
+    def msgpack = "0.9.8"
+    // https://github.com/msgpack/msgpack-java
+    implementation "org.msgpack:msgpack-core:${msgpack}"
+    implementation "org.msgpack:jackson-dataformat-msgpack:${msgpack}"
+
+    implementation "org.apache.httpcomponents:httpcore:4.4.11"
+    implementation "org.apache.httpcomponents:httpcore-nio:4.4.11"
+    implementation "org.apache.httpcomponents:httpasyncclient:4.1.4"
+    implementation "org.apache.httpcomponents:httpclient:4.5.9"
+
+    def prometheus = "0.16.0"
+    implementation "io.prometheus:simpleclient_httpserver:${prometheus}"
+    implementation "io.prometheus:simpleclient:${prometheus}"
+    implementation "io.prometheus:simpleclient_common:${prometheus}"
+    implementation "io.prometheus:simpleclient_hotspot:${prometheus}"
+
+    def jmh = "1.37"
+    implementation "org.openjdk.jmh:jmh-core:${jmh}"
+    implementation "org.openjdk.jmh:jmh-generator-annprocess:${jmh}"
+
+    def immutables = "2.10.1"
+    implementation "org.immutables:annotate:${immutables}"
+    implementation "org.immutables:value:${immutables}"
+
+    def jdk18on = "1.78.1"
+    implementation "org.bouncycastle:bcpkix-jdk18on:${jdk18on}"
+    implementation "org.bouncycastle:bcprov-jdk18on:${jdk18on}"
+
+    def googleDcpLogging = "5.5.0"
+    implementation "com.google.cloud:spring-cloud-gcp-starter-logging:${googleDcpLogging}"
+    implementation "com.google.cloud:spring-cloud-gcp-logging:${googleDcpLogging}"
+
+    implementation "org.camunda.bpm.extension.dmn.scala:dmn-engine:1.9.0"
+    implementation "org.camunda.feel:feel-engine:1.17.7"
+
+    // https://github.com/real-logic/agrona
+    implementation "org.agrona:agrona:1.21.2"
+    implementation 'com.typesafe:config:1.3.2'
+    implementation "org.scalatest:scalatest_2.13:3.2.10"
+    implementation "org.scala-lang:scala-library:2.13.14"
+    implementation "org.scala-lang.modules:scala-parser-combinators_2.13:1.1.2"
+    implementation 'com.netflix.concurrency-limits:concurrency-limits-core:0.5.1'
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+    implementation "one.util:streamex:0.8.2"
+    implementation "org.rocksdb:rocksdbjni:9.5.2"
+    implementation "com.google.code.gson:gson:2.11.0"
+    implementation "org.codehaus.mojo:animal-sniffer-annotations:1.23"
+    implementation "com.google.errorprone:error_prone_annotations:2.28.0"
+    implementation "org.objenesis:objenesis:3.4"
+    implementation "org.apache.commons:commons-math3:3.6.1"
+    implementation "com.carrotsearch:hppc:0.10.0"
+    implementation "me.dinowernli:java-grpc-prometheus:0.6.0"
+    implementation "com.esotericsoftware:kryo:5.6.0"
+    implementation "io.github.classgraph:classgraph:4.8.174"
+    implementation 'com.lmax:disruptor:4.0.0'
+    implementation 'commons-codec:commons-codec:1.16.1'
+    implementation 'org.liquibase:liquibase-core:4.28.0'
+    implementation "org.jetbrains:annotations:24.1.0"
+    implementation "net.jcip:jcip-annotations:1.0"
+    implementation "com.cronutils:cron-utils:9.2.1"
+    implementation 'com.alibaba.fastjson2:fastjson2:2.0.51'
+    implementation "commons-beanutils:commons-beanutils:1.9.4"
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.22'
+    implementation 'org.springframework.cloud:spring-cloud-commons:4.1.4'
+    implementation 'org.apache.commons:commons-collections4:4.4'
+    implementation 'org.ehcache:ehcache:3.10.8'
+    implementation 'org.dromara.hutool:hutool-core:6.0.0-M14'
+    implementation 'ognl:ognl:3.4.3'
+    implementation 'org.apache.commons:commons-lang3:3.14.0'
+    implementation "pl.allegro.tech:embedded-elasticsearch:2.10.0"
+    implementation "com.moandjiezana.toml:toml4j:0.7.2"
+}
+
+jar {
+    archiveClassifier = ''
+    archiveBaseName = 'demo'
+}
+
+
+application {
+    mainClass = 'com.example.demo.DemoApplication'
+    applicationName = "demo"
+    applicationDefaultJvmArgs = ['-XX:+ExitOnOutOfMemoryError',
+                                 '-Dfile.encoding=UTF-8']
+}
